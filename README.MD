@@ -1,3 +1,8 @@
+- find paths from js file 
+
+```
+cat loaction.js|  grep -o '"/[^"]*"' | sort -u
+```
 - Js New Paths
 ```
 javascript:(function(){var scripts=document.getElementsByTagName("script"),regex=/(?%3C=(\%22|\%27|\`))\/[a-zA-Z0-9_?&=\/\-\#\.]*(?=(\%22|\'|\%60))/g;const%20results=new%20Set();for(var%20i=0;i%3Cscripts.length;i++){var%20t=scripts[i].src;if(t!==%22%22){fetch(t).then(function(response){return%20response.text();}).then(function(text){var%20matches=text.matchAll(regex);for(let%20match%20of%20matches){results.add(match[0]);}}).catch(function(error){console.log(%22An%20error%20occurred:%22,error);});}}var%20pageContent=document.documentElement.outerHTML;var%20matches=pageContent.matchAll(regex);for(const%20match%20of%20matches){results.add(match[0]);}setTimeout(function(){var%20uniqueSortedResults=[...results].sort();var%20newWindow=window.open('','_blank');newWindow.document.write('%3Cpre%3E'%20+%20uniqueSortedResults.join(%22\n%22)%20+%20'%3C/pre%3E');},3000);})();
